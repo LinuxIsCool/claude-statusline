@@ -192,9 +192,20 @@ def _cycle_color(args: list[str], state: dict) -> None:
     print(f"Theme: {theme_name}")
 
 
+KNOWN_COMMANDS = ("next", "prev", "set", "list", "status", "color")
+
+
 def main() -> None:
     args = sys.argv[1:]
     cmd = args[0] if args else "next"
+
+    # A statusline theme is user-visible state; only cycle it on an explicit
+    # command. Unknown args (e.g. --help, typos) must not mutate anything.
+    if cmd not in KNOWN_COMMANDS:
+        print(f"Unknown command: {cmd}", file=sys.stderr)
+        print(f"Usage: cycle_theme.py [{'|'.join(KNOWN_COMMANDS)}] (no args = next)",
+              file=sys.stderr)
+        sys.exit(0 if cmd in ("-h", "--help") else 1)
 
     state = _load_state_raw()
 
