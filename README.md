@@ -1,6 +1,6 @@
 # claude-statusline
 
-A dashboard statusline for [Claude Code](https://claude.com/claude-code): 15 themes × 9 color palettes, from a one-line classic to a full hardware-telemetry grid with CPU/RAM/GPU/network sections, session tracking, cost and rate-limit awareness, and full payload logging.
+A dashboard statusline for [Claude Code](https://claude.com/claude-code): 16 themes × 9 color palettes, from a one-line classic to a full hardware-telemetry grid with CPU/RAM/GPU/network sections, session tracking, cost and rate-limit awareness, and full payload logging.
 
 ![gpu theme](assets/gpu.svg)
 
@@ -8,7 +8,7 @@ A dashboard statusline for [Claude Code](https://claude.com/claude-code): 15 the
 
 ## Features
 
-- **15 themes**: `classic`, `observatory`, `zen`, `narrative`, `fleet`, `memory_palace`, `economics`, `git_forge`, `heartbeat`, `archaeologist`, `rice`, `gpu`, `grid`, `classic+grid`, `gpu+grid`
+- **16 themes**: `classic`, `hw`, `observatory`, `zen`, `narrative`, `fleet`, `memory_palace`, `economics`, `git_forge`, `heartbeat`, `archaeologist`, `rice`, `gpu`, `grid`, `classic+grid`, `gpu+grid`
 - **9 palettes**: Catppuccin (mocha, macchiato, frappe, latte), Nord (frost, aurora, polar), Solarized (dark, light)
 - **Hardware telemetry**: CPU, RAM, GPU (nvidia-smi), network throughput, WiFi signal, Tailscale and WireGuard status. Each section degrades gracefully when its data source is absent.
 - **Session tracking**: per-session cost, context percentage, rate-limit windows, topic history, and session numbering, logged to SQLite and monthly JSONL under `~/.claude/local/statusline/`
@@ -87,7 +87,7 @@ uv run --extra test pytest          # 329 tests: snapshot, property-based (Hypot
 UPDATE_SNAPSHOTS=1 uv run --extra test pytest tests/test_theme_snapshots.py   # accept new golden output
 ```
 
-Golden files under `tests/golden/` baseline all 15 themes; any visual regression is caught on the next run.
+Golden files under `tests/golden/` baseline all 16 themes; any visual regression is caught on the next run.
 
 ## License
 

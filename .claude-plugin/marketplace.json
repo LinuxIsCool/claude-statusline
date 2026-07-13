@@ -9,7 +9,7 @@
     {
       "name": "claude-statusline",
       "source": "./",
-      "description": "Dashboard statusline for Claude Code: 15 themes × 9 color palettes with hardware telemetry, full payload logging, persona awareness, and session tracking"
+      "description": "Dashboard statusline for Claude Code: 16 themes × 9 color palettes with hardware telemetry, full payload logging, persona awareness, and session tracking"
     }
   ]
 }

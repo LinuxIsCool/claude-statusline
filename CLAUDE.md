@@ -1,8 +1,8 @@
 # claude-statusline
 
-Dashboard statusline for Claude Code: 15 themes × 9 color palettes with hardware telemetry, full payload logging, persona awareness, and session tracking.
+Dashboard statusline for Claude Code: 16 themes × 9 color palettes with hardware telemetry, full payload logging, persona awareness, and session tracking.
 
-**Themes:** `classic`, `observatory`, `zen`, `narrative`, `fleet`, `memory_palace`, `economics`, `git_forge`, `heartbeat`, `archaeologist`, `rice`, `gpu`, `grid`, `classic+grid`, `gpu+grid`. (`gpu+grid` and `classic+grid` are real subclasses that append a grid section, not aliases.)
+**Themes:** `classic`, `hw`, `observatory`, `zen`, `narrative`, `fleet`, `memory_palace`, `economics`, `git_forge`, `heartbeat`, `archaeologist`, `rice`, `gpu`, `grid`, `classic+grid`, `gpu+grid`. (`gpu+grid` and `classic+grid` are real subclasses that append a grid section, not aliases.)
 
 **Palettes:** `catppuccin_mocha` (default), `catppuccin_macchiato`, `catppuccin_frappe`, `catppuccin_latte`, `nord_frost`, `nord_aurora`, `nord_polar`, `solarized_dark`, `solarized_light`.
 
@@ -27,7 +27,7 @@ Key modules:
 
 **Test suite:** 329 tests (snapshot per theme + property-based via Hypothesis + integration). Run `uv run --extra test pytest`.
 
-**Snapshot regression:** `tests/golden/<theme>.txt` baselines all 15 themes. `UPDATE_SNAPSHOTS=1 pytest tests/test_theme_snapshots.py` to accept new output. Keep mock/fixture data generic: no real SSIDs, IPs, or hostnames.
+**Snapshot regression:** `tests/golden/<theme>.txt` baselines all 16 themes. `UPDATE_SNAPSHOTS=1 pytest tests/test_theme_snapshots.py` to accept new output. Keep mock/fixture data generic: no real SSIDs, IPs, or hostnames.
 
 **Hardening:** atomic /tmp cache writes (race-safe), iface-keyed net prev-snapshot, subprocess blackout for tailscale/nmcli/nvidia-smi/git, process-label ANSI sanitization, defensive wcwidth fallback, expanded ANSI regex (all CSI terminators).
 

@@ -1,7 +1,7 @@
 {
   "name": "claude-statusline",
   "version": "1.0.1",
-  "description": "Dashboard statusline for Claude Code: 15 themes × 9 color palettes with hardware telemetry, full payload logging, persona awareness, and session tracking",
+  "description": "Dashboard statusline for Claude Code: 16 themes × 9 color palettes with hardware telemetry, full payload logging, persona awareness, and session tracking",
   "author": {"name": "claude-statusline contributors"},
   "license": "MIT",
   "homepage": "https://github.com/LinuxIsCool/claude-statusline",
