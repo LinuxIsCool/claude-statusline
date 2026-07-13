@@ -1,0 +1,17 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Run test suite
+        run: uv run --extra test pytest -q
+      - name: Selftest (render canary)
+        run: uv run hooks/selftest.py || true

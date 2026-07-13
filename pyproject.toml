@@ -1,0 +1,14 @@
+[project]
+name = "claude-statusline-tests"
+version = "0.1.0"
+description = "Test-only metadata for claude-statusline. Hooks use PEP-723 inline deps."
+requires-python = ">=3.11"
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0",
+    "hypothesis>=6.0",
+    # Match production: hooks declare wcwidth via PEP-723. The no-wcwidth
+    # fallback path is covered explicitly by test_p8 (monkeypatched).
+    "wcwidth>=0.2.0",
+]

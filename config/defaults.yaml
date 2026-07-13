@@ -1,0 +1,44 @@
+# Default configuration for claude-statusline.
+# Runtime overrides: ~/.claude/local/statusline/config.yaml
+#
+# NOTE: Use exactly 2-space indentation (not tabs, not 4 spaces).
+# The stdlib YAML parser requires this exact format.
+
+display:
+  default_theme: classic
+  default_color: catppuccin_mocha
+  lines: 2
+  nerd_font: true
+
+memory:
+  refresh_interval: 60
+  query_timeout: 2.0
+  backends:
+    hippo: true
+    koi: true
+    journal: true
+    letta: true
+    messages: true
+    files: true
+    sessions: true
+
+logging:
+  jsonl: true
+  sqlite: true
+  retention_days: 90
+
+sessions:
+  stale_hours: 24
+  title_inference: true
+  title_max_words: 5
+
+git:
+  cache_ttl: 10
+
+components:
+  gpu: true
+  memory: true
+  git: true
+  topics: true
+  sessions: true
+  persona: true

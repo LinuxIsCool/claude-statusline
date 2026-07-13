@@ -1,0 +1,15 @@
+{
+  "name": "claude-statusline",
+  "owner": {"name": "LinuxIsCool"},
+  "metadata": {
+    "description": "Marketplace for the claude-statusline plugin",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "claude-statusline",
+      "source": "./",
+      "description": "Dashboard statusline for Claude Code: 15 themes × 9 color palettes with hardware telemetry, full payload logging, persona awareness, and session tracking"
+    }
+  ]
+}

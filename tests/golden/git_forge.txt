@@ -1,0 +1,2 @@
+[matt:674] 🔀 main* ↑2 │ +120/-33 │ ctx:42% ███▎████
+stash:1 │ staged:2 mod:5 untracked:3 │ $4.50

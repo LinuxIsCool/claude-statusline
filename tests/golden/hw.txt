@@ -1,0 +1,5 @@
+🪷​  matt@legion:674          │ Opus 4.7 (1M context)    │ ctx:42% ████████████   │      $4.50       │   5h:15% 7d:8%   │       v2.1.150
+/snapshot/test/cwd                                                               │ ⎇ main                              │       +120/-33
+💻​  Intel i7-13700F          │ CPU :  7% ▋█████████     │ RAM : 42% ████▏█████   │    13.0/31GB     │       47°C       │               
+🎮​  NVIDIA RTX 4070          │ GPU : 20% ██████████     │ VRAM: 18% █▊████████   │     2.1/12GB     │       41°C       │               
+📡​  wlan0/ExampleNet         │ ↓ 1.5 Mbps               │ ↑ 384 Kbps             │     1.7GB ↓      │    359.3MB ↑     │        -69 dBm

@@ -1,0 +1,3 @@
+[matt:674] Opus 4.7 (1M context) │ ctx:42% ████████████ │ $4.50 │ 5h:15% █▏██████ │ 7d:8% ▋███████
+/snapshot/test/cwd │ 🔀 main* ↑2 │ +120/-33 │ cache C:5.0K R:2.0K │ 🧠 H:10.0K K:411.0K J:29 L:4 M:847.0K F:51 S:242
+v2.1.150 │ explanatory │ 1h14m (api:51m) │ Topics: auth → database → api → testing

@@ -1,0 +1,2 @@
+[matt:674] │ Opus 4.7 (1M context) │ ctx:42% ████████████ │ $4.50 │ 5h:15% │ 7d:8%
+/snapshot/test/cwd │ v2.1.150 │ explanatory │ 1h14m │ +120/-33

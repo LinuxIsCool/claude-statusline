@@ -1,0 +1,19 @@
+{
+  "name": "claude-statusline",
+  "version": "1.0.0",
+  "description": "Dashboard statusline for Claude Code: 15 themes × 9 color palettes with hardware telemetry, full payload logging, persona awareness, and session tracking",
+  "author": {"name": "claude-statusline contributors"},
+  "license": "MIT",
+  "homepage": "https://github.com/LinuxIsCool/claude-statusline",
+  "repository": "https://github.com/LinuxIsCool/claude-statusline",
+  "keywords": ["statusline", "dashboard", "themes", "logging", "personas", "gpu", "grid"],
+  "commands": ["./commands/"],
+  "skills": ["./skills/"],
+  "agents": ["./agents/dashboard.md"],
+  "hooks": {
+    "SessionStart": [{"hooks": [{"type": "command", "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/session_start.py", "timeout": 10}]}],
+    "UserPromptSubmit": [{"hooks": [{"type": "command", "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/user_prompt.py", "timeout": 5}]}],
+    "PreToolUse": [{"hooks": [{"type": "command", "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/grid_tool.py", "timeout": 3}]}],
+    "Stop": [{"hooks": [{"type": "command", "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/session_stop.py", "timeout": 10}]}]
+  }
+}

@@ -1,0 +1,2 @@
+[matt:674] ctx:42% ███▎████ │ $4.50
+Sessions: matt:1 (opus,$4.50)  matt:2 (sonnet,$0.40)
