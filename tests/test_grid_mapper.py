@@ -1,11 +1,33 @@
 """Tests for event-to-emoji mapping."""
 
+import json
 import sys
 from pathlib import Path
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).parent.parent / "lib"))
 
+import grid_mapper
 from grid_mapper import map_event, get_weight, WEIGHT_TABLE, EVENT_KEY_MAP, TOOL_KEY_MAP
+
+
+@pytest.fixture(autouse=True)
+def fixture_flat_file(tmp_path, monkeypatch):
+    """Point the mapper at a fixture flat file so mapping behavior is
+    verified on any machine. map_event only maps keys present in the flat
+    file (the optional claude-emoji export at ~/.claude/local/emoji/);
+    without this fixture the tests would depend on host state.
+    """
+    flat = {key: "•" for key in list(EVENT_KEY_MAP.values()) + list(TOOL_KEY_MAP.values())}
+    flat_path = tmp_path / "emoji_flat.json"
+    flat_path.write_text(json.dumps(flat), encoding="utf-8")
+    monkeypatch.setattr(grid_mapper, "_FLAT_PATH", flat_path)
+    monkeypatch.setattr(grid_mapper, "_flat_cache", None)
+    monkeypatch.setattr(grid_mapper, "_flat_mtime", 0.0)
+    yield
+    grid_mapper._flat_cache = None
+    grid_mapper._flat_mtime = 0.0
 
 
 class TestMapEvent:
