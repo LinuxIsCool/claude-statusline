@@ -3,7 +3,7 @@
   "owner": {"name": "LinuxIsCool"},
   "metadata": {
     "description": "Marketplace for the claude-statusline plugin",
-    "version": "1.0.0"
+    "version": "1.0.1"
   },
   "plugins": [
     {
