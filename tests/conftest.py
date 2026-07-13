@@ -4,9 +4,18 @@
 MockComponents provides a populated ComponentData dict matching real-world
 shapes so theme renderers can be exercised against deterministic inputs.
 """
+import os
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent / "lib"))
+
+# Pin terminal capabilities before lib imports so rendering is deterministic
+# on any host: bare CI runners have no TERM/COLORTERM and would otherwise
+# render colorless, failing every test that asserts SGR codes. Tests that
+# exercise NO_COLOR/depth behavior set their own env via monkeypatch.
+os.environ["COLORTERM"] = "truecolor"
+os.environ["TERM"] = "xterm-256color"
+os.environ.pop("NO_COLOR", None)
 
 import pytest
 from components import ComponentData
