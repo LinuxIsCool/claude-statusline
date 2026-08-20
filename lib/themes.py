@@ -372,7 +372,7 @@ class HardwareTheme(Theme):
     """Minimal 5-line hardware dashboard on its own wide-first-column grid.
 
     L1 identity | model | ctx | $ | rates | version
-    L2 path (span 3, centred) | branch (span 2, centred) | diff
+    L2 path (span 2) | full session id (span 2) | branch | diff
     L3 CPU | CPU% | RAM%  | RAM GB  | temp
     L4 GPU | GPU% | VRAM% | VRAM GB | temp
     L5 wifi | ↓rate | ↑rate | ↓total | ↑total | signal
@@ -439,7 +439,14 @@ class HardwareTheme(Theme):
         ])
 
     def _row_workspace(self, components, palette) -> Row:
-        """Line 2: path (span 3, centred) | branch (span 2, centred) | diff."""
+        """Line 2: path (span 2) | full session id (span 2) | branch | diff.
+
+        The session id renders IN FULL (36-char UUID) — it exists to be
+        copy-pasted into `claude --resume` / fleet tooling, and a clipped
+        id is useless for that. The c3-c4 span is 41 visible chars, so the
+        UUID fits with room; branch takes the c5 squeeze instead, using the
+        middle-ellipsis _truncate_branch so both ends stay identifiable.
+        """
         ws = _typed(components, "workspace") or {}
         cwd = ws.get("cwd_short") or ws.get("cwd") or "?"
         git_d = _typed(components, "git") or {}
@@ -449,13 +456,30 @@ class HardwareTheme(Theme):
         ld = _typed(components, "lines") or {}
         added = ld.get("added", 0) or 0
         removed = ld.get("removed", 0) or 0
+
+        # Full session id — same fallback chain as _row_identity, pure
+        # string reads only (session_id_full is shell-resolved upstream).
+        ident = _v(components, "identity")
+        iv = ident.value if ident else {}
+        sid = iv.get("session_id_full", "") or iv.get("session_id", "") or ""
+        if not sid:
+            tpath = iv.get("transcript_path", "") or ""
+            if tpath:
+                base = tpath.rsplit("/", 1)[-1]
+                if base.endswith(".jsonl"):
+                    base = base[:-6]
+                sid = base
+
         path_cell = styled(cwd, palette.fg_dim)
-        branch_cell = styled(f"⎇ {branch}", palette.info) if branch else ""
+        sid_cell = styled(sid, palette.fg_dim) if sid else ""
+        branch_cell = (styled(f"⎇ {_truncate_branch(branch, 16)}", palette.info)
+                       if branch else "")
         diff_cell = (styled(f"+{added}", palette.ok) + styled(f"/-{removed}", palette.error)
                      if (added or removed) else "")
         return _HW_GRID.row(cells=[
-            Cell(content=path_cell, span=3, align="left"),      # c1-c3 path (starts at col 0)
-            Cell(content=branch_cell, span=2, align="left"),    # c4-c5 branch
+            Cell(content=path_cell, span=2, align="left"),      # c1-c2 path
+            Cell(content=sid_cell, span=2, align="left"),       # c3-c4 full session id
+            Cell(content=branch_cell, span=1, align="left"),    # c5 branch
             Cell(content=diff_cell, span=1, align="right"),     # c6 diff
         ])
 

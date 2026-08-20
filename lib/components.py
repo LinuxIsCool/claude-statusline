@@ -46,6 +46,7 @@ class IdentityValue(TypedDict, total=False):
     # Shell-resolved fields (consolidated I/O — env + socket + getppid).
     # See compute_identity() for the resolution chain.
     host: str
+    session_id_full: str   # canonical session id (env → payload → transcript basename)
     session_id_short: str  # 8-char prefix of the canonical session id
     pid: str               # ppid string or extracted from CLAUDEMATRIX_AGENT_ID
     persona_icon: str      # claude-emoji glyph for `persona:<slug>` (may be "")
@@ -398,6 +399,7 @@ def compute_identity(payload: StatusPayload, state: dict) -> ComponentData:
             "transcript_path": payload.transcript_path or "",
             # Shell-resolved fields.
             "host": host,
+            "session_id_full": sid_full,
             "session_id_short": sid_short,
             "pid": pid,
             "persona_icon": persona_icon,
